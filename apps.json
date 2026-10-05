@@ -1,0 +1,170 @@
+﻿{
+  "version": 1,
+  "_comment": "重装系统后要自动安装的软件清单。enabled=false 的条目默认跳过（可临时用 -IncludeDisabled 打开）。source 取值：winget / msstore / url / github / manual（manual 只提示不安装）。可选字段：fallback（主方式失败后改用的备用方案）、detect（注册表软件名包含该串则视为已装）、successCodes（额外的成功退出码）、args（静默安装参数）。",
+  "_verified": "本文档里的 winget 包 ID 与直链已于 2026-10 联网核对（winget-pkgs / 各软件官网 / GitHub API）。注意：GitHub 项目不要用 /releases/latest/download/<文件>，资产名带版本号，必须走本清单的 github 源动态解析。",
+  "apps": [
+    {
+      "name": "Git for Windows",
+      "category": "开发",
+      "source": "winget",
+      "id": "Git.Git",
+      "enabled": true
+    },
+    {
+      "name": "Node.js (LTS)",
+      "category": "开发",
+      "source": "winget",
+      "id": "OpenJS.NodeJS.LTS",
+      "enabled": true
+    },
+    {
+      "name": "Python 3.13",
+      "category": "开发",
+      "source": "winget",
+      "id": "Python.Python.3.13",
+      "enabled": true
+    },
+    {
+      "name": "Visual Studio Code",
+      "category": "开发",
+      "source": "winget",
+      "id": "Microsoft.VisualStudioCode",
+      "enabled": true,
+      "fallback": {
+        "source": "url",
+        "url": "https://update.code.visualstudio.com/latest/win32-x64-user/stable",
+        "fileName": "VSCodeUserSetup-x64.exe",
+        "args": ["/VERYSILENT", "/MERGETASKS=!runcode"]
+      }
+    },
+    {
+      "name": "Microsoft Visual C++ 2015-2022 运行库 (x64)",
+      "category": "运行库",
+      "source": "winget",
+      "id": "Microsoft.VCRedist.2015+.x64",
+      "enabled": true
+    },
+    {
+      "name": "Microsoft Visual C++ 2015-2022 运行库 (x86)",
+      "category": "运行库",
+      "source": "winget",
+      "id": "Microsoft.VCRedist.2015+.x86",
+      "enabled": true
+    },
+    {
+      "name": "微信",
+      "category": "常用",
+      "source": "winget",
+      "id": "Tencent.WeChat.Universal",
+      "enabled": true,
+      "note": "4.x 新版；旧版 3.9 的包是 Tencent.WeChat"
+    },
+    {
+      "name": "QQ",
+      "category": "常用",
+      "source": "winget",
+      "id": "Tencent.QQ.NT",
+      "enabled": true,
+      "note": "NT 新版；经典旧版是 Tencent.QQ"
+    },
+    {
+      "name": "百度网盘",
+      "category": "常用",
+      "source": "winget",
+      "id": "Baidu.BaiduNetdisk",
+      "enabled": true,
+      "fallback": {
+        "source": "url",
+        "url": "https://issuepcdn.baidupcs.com/issue/netdisk/yunguanjia/BaiduNetdisk_8.8.8.101.exe",
+        "fileName": "BaiduNetdisk_8.8.8.101.exe",
+        "args": ["/S"],
+        "successCodes": [2],
+        "detect": "百度网盘"
+      }
+    },
+    {
+      "name": "Bandizip",
+      "category": "常用",
+      "source": "winget",
+      "id": "Bandisoft.Bandizip",
+      "enabled": true,
+      "fallback": {
+        "source": "url",
+        "url": "https://bandisoft.app/bandizip/BANDIZIP-SETUP-STD-X64.EXE",
+        "fileName": "BANDIZIP-SETUP-STD-X64.EXE",
+        "args": ["/S"],
+        "detect": "Bandizip"
+      }
+    },
+    {
+      "name": "PotPlayer",
+      "category": "常用",
+      "source": "winget",
+      "id": "Daum.PotPlayer",
+      "enabled": true,
+      "fallback": {
+        "source": "url",
+        "url": "https://t1.daumcdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe",
+        "fileName": "PotPlayerSetup64.exe",
+        "args": ["/S"],
+        "detect": "PotPlayer"
+      }
+    },
+    {
+      "name": "Clash Verge Rev",
+      "category": "常用",
+      "source": "winget",
+      "id": "ClashVergeRev.ClashVergeRev",
+      "enabled": true,
+      "fallback": {
+        "source": "github",
+        "repo": "clash-verge-rev/clash-verge-rev",
+        "asset": "*x64-setup.exe",
+        "args": ["/S"],
+        "detect": "Clash Verge"
+      }
+    },
+    {
+      "name": "网易 UU 加速器",
+      "category": "常用",
+      "source": "manual",
+      "url": "https://uu.163.com/download/",
+      "note": "官网下载按钮由 JS 生成，没有稳定直链（推测的 CDN 地址返回 403），只能手动装；已装过的话用 detect 识别会跳过",
+      "detect": "UU加速器",
+      "enabled": true
+    },
+    {
+      "name": "UU 远程",
+      "category": "常用",
+      "source": "winget",
+      "id": "NetEase.UURemote",
+      "enabled": true
+    },
+    {
+      "name": "腾讯 WorkBuddy",
+      "category": "办公",
+      "source": "winget",
+      "id": "Tencent.WorkBuddy",
+      "enabled": true
+    },
+    {
+      "name": "Google Chrome",
+      "category": "常用",
+      "source": "winget",
+      "id": "Google.Chrome",
+      "enabled": false
+    },
+    {
+      "name": "Steam",
+      "category": "游戏平台",
+      "source": "winget",
+      "id": "Valve.Steam",
+      "enabled": false
+    }
+  ],
+  "postSetup": {
+    "enabled": false,
+    "_comment": "把 post-setup.ps1 放在脚本同目录，并把 enabled 改成 true，就可以在主流程结束后执行自定义配置（恢复 .gitconfig、装 VS Code 插件、设置 npm 源等）。",
+    "script": "post-setup.ps1"
+  }
+}

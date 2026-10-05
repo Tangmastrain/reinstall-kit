@@ -1,0 +1,14 @@
+# 运行产物
+install-log.txt
+install-result.csv
+apps.generated.json
+winget-export.json
+
+# 下载缓存（重装时需要在离线机器上复用，所以不进版本库）
+downloads/
+
+# Windows / 编辑器杂项
+Thumbs.db
+desktop.ini
+*.tmp
+.vscode/
