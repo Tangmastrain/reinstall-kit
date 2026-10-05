@@ -1,6 +1,6 @@
 # Reinstall Kit · Windows 重装后一键装回软件
 
-重装完 Windows，双击一个 bat，把清单里的软件全部自动下载、静默安装（含微信/QQ/百度网盘/VS Code/Git/VC++ 运行库等），装完给出**成功 / 需手动 / 跳过 / 失败**四类结果汇总。
+重装完 Windows，双击一个 bat，把清单里的软件全部自动下载、静默安装（含微信/QQ/百度网盘/VS Code/PowerShell 7/Git/VC++ 运行库等），装完给出**成功 / 需手动 / 跳过 / 失败**四类结果汇总。
 
 适合：定期重装系统的人、给别人装机的、想把"我的电脑环境"变成一份可复用清单的人。
 
@@ -80,7 +80,7 @@ reinstall-kit/
 
 ## 软件清单
 
-清单在 [`apps.json`](apps.json)，当前 17 条，其中 15 条默认安装：
+清单在 [`apps.json`](apps.json)，当前 18 条，其中 16 条默认安装：
 
 | 软件 | 方式 | 包 ID / 来源 |
 | --- | --- | --- |
@@ -88,6 +88,7 @@ reinstall-kit/
 | Node.js (LTS) | winget | `OpenJS.NodeJS.LTS` |
 | Python 3.13 | winget | `Python.Python.3.13` |
 | Visual Studio Code | winget | `Microsoft.VisualStudioCode`（有稳定直链兜底） |
+| PowerShell 7 | winget | `Microsoft.PowerShell`（GitHub 最新版 msi 兜底） |
 | Microsoft Visual C++ 2015-2022 运行库 (x64 / x86) | winget | `Microsoft.VCRedist.2015+.x64` / `.x86` |
 | 微信 | winget | `Tencent.WeChat.Universal`（4.x 新版） |
 | QQ | winget | `Tencent.QQ.NT`（NT 新版） |
@@ -165,6 +166,7 @@ reinstall-kit/
 
 - **提示 winget 不可用**：脚本会自动修复；仍失败就去 Microsoft Store 装"应用安装程序 / App Installer"，或访问 <https://aka.ms/getwinget>，然后重跑。
 - **报"无法加载文件……在此系统上禁止运行脚本"**：用 `一键安装软件.bat` 启动（已带 `-ExecutionPolicy Bypass`），或执行 `powershell -ExecutionPolicy Bypass -File .\bootstrap.ps1`。
+- **清单里的 PowerShell 7 和脚本自身的关系**：清单里那一项是装给你日常用的新版 PowerShell；脚本本身不依赖它——`一键安装软件.bat` 会优先用已安装的 `pwsh`，没有就用 Windows 自带的 Windows PowerShell 5.1。所以删掉或关掉这一项，脚本照样能跑。
 - **某个软件装失败**：单独重试，`.\bootstrap.ps1 -Only "软件名" -Interactive`。
 - **结果里"跳过"很多**：说明 winget 不可用且该条目没有 `fallback`；修好 winget 后重跑即可。
 - **安装器弹了界面**：该软件的静默参数未知（例如图吧工具箱类的第三方安装包），按提示手动点完即可，脚本会等它结束。

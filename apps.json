@@ -38,6 +38,22 @@
       }
     },
     {
+      "name": "PowerShell 7",
+      "category": "开发",
+      "source": "winget",
+      "id": "Microsoft.PowerShell",
+      "enabled": true,
+      "note": "新版 PowerShell；仓库里的 .ps1 由系统自带的 Windows PowerShell 5.1 启动，与本项无关",
+      "fallback": {
+        "source": "github",
+        "repo": "PowerShell/PowerShell",
+        "asset": "PowerShell-*-win-x64.msi",
+        "args": ["/quiet", "/norestart", "ADD_PATH=1"],
+        "fileName": "PowerShell-win-x64.msi",
+        "detect": "PowerShell 7"
+      }
+    },
+    {
       "name": "Microsoft Visual C++ 2015-2022 运行库 (x64)",
       "category": "运行库",
       "source": "winget",
